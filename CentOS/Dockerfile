@@ -27,13 +27,16 @@ rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 
-RUN wget http://download.gluster.org/pub/gluster/glusterfs/3.7/LATEST/CentOS/glusterfs-epel.repo -O /etc/yum.repos.d/glusterfs-epel.repo
+RUN wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-6.noarch.rpm
+RUN rpm -ivh epel-release-7-6.noarch.rpm
+
+RUN wget http://download.gluster.org/pub/gluster/glusterfs/3.7/LATEST/EPEL.repo/glusterfs-epel.repo -O /etc/yum.repos.d/glusterfs-epel.repo
 
 RUN yum -y update
 
-RUN yum --setopt=tsflags=nodocs -y install glusterfs glusterfs-server glusterfs-fuse glusterfs-geo-replication glusterfs-cli glusterfs-api
-RUN yum --setopt=tsflags=nodocs -y install attr
-RUN yum --setopt=tsflags=nodocs -y install iputils iproute
+RUN yum --setopt=tsflags=nodocs --enablerepo=epel -y install glusterfs glusterfs-server glusterfs-fuse glusterfs-geo-replication glusterfs-cli glusterfs-api
+RUN yum --setopt=tsflags=nodocs --enablerepo=epel -y install attr
+RUN yum --setopt=tsflags=nodocs --enablerepo=epel -y install iputils iproute
 RUN yum clean all
 
 RUN echo 'root:password' | chpasswd
