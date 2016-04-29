@@ -1,6 +1,6 @@
 # Login
 ```
-ssh root@localhost -p 32769 # ポートは毎回変化するので注意
+ssh root@localhost -p 32769
 ```
 
 # Create volume
@@ -17,3 +17,13 @@ gluster volume quota gfs_volume enable
 mkdir /var/gfs_cli_vol
 mount -t glusterfs -o acl $HOSTNAME:/gfs_volume /var/gfs_cli_vol
 ```
+# Install developer tool
+```
+yum groupinstall "Development Tools"
+yum install vim
+```
+# GlusterFS API
+http://enakai00.hatenablog.com/entry/20131130/1385895777
+
+# ToDo
+* マウントさせる

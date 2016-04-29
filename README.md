@@ -38,7 +38,7 @@ This command will build the docker image from the Dockerfile you just cloned and
 Once the image is built in either of the above two steps, we can now run the container with gluster daemon running. For this run the command:
 
 ~~~
-$ docker run --privileged -ti -p 22 image name
+$ docker run --privileged -ti -p 20022:22 gluster-centos
 ~~~
 
 ( is either gluster-fedora or gluster-centos as per the configurations so far)
@@ -71,7 +71,7 @@ Once we have got the IP, ssh into the container:
 
 ~~~
 
-$ ssh root@IP address
+$ ssh -oStrictHostKeyChecking=no -p 20022 root@IP address
 The password will be ‘password’ as specified in the dockerfile. Make sure the password is changed immediately.
 [ ~]# ssh root@172.17.0.2
 root@172.17.0.2's password:
